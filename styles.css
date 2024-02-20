@@ -5,7 +5,16 @@ h1 {
 	text-align: center;
   color: blue;
 }
-h2 {
+.bot {
 	text-align: center;
   color: red;
+  font-size: 120%;
+  padding-bottom: 30px;
+}
+.cap{
+	text-align: center;
+	color: olive;
+	font-family: "Lucida Console", "Courier New", monospace;
+	font-size: 150%;
+	padding-bottom: 20px;
 }
