@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Determine the values based on the week number
     var values = ["K.D.", "M.M.", "A.W."];
-    var valuesForShift = ["K.D.", "M.M.", "A.W."];
+    var valuesForShift = ["A.W.", "M.M.","K.D."];
 	//for services
 	var valuesToCreateServices = ["K.D","A.W"];
     var index = (weekNumber - 25) % values.length;
