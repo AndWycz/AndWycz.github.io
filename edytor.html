@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prosty Edytor Tekstowy</title>
+    <script src="script.js"></script>
+	<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div><a href="index.html">zmiana</a></div>
+    <h1>Edytor</h1>
+    <textarea id="inputText" placeholder="Wprowadź wartości"></textarea><br>
+    <select id="formatOption">
+        <option value="format1">Format 1 ('var1','var2','var3')</option>
+        <option value="format2">Format 2 var1,var2,var3</option>
+    </select><br>
+    <button onclick="formatText()">Format</button><br>
+    <div id="output"></div>
+
+
+    <script>
+        function formatText() {
+            var inputText = document.getElementById("inputText").value;
+            var formatOption = document.getElementById("formatOption").value;
+            var values = inputText.split('\n').map(function(item) {
+                return item.trim();
+            }).filter(Boolean);
+
+            var outputText = "";
+
+            if (formatOption === "format1") {
+           
+                outputText = "('" + values.join("','") + "')";
+            } else if (formatOption === "format2") {
+                outputText = values.join(",");
+            }
+
+            document.getElementById("output").textContent = outputText;
+        }
+    </script>
+</body>
+</html>
