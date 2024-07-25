@@ -1,5 +1,7 @@
 body {
-  background-color: powderblue;
+	background-color: powderblue;
+	font-family: Arial, sans-serif;
+	margin: 20px;
 }
 h1 {
 	text-align: center;
@@ -17,4 +19,17 @@ h1 {
 	font-family: "Lucida Console", "Courier New", monospace;
 	font-size: 150%;
 	padding-bottom: 20px;
+}
+textarea {
+	width: 100%;
+	height: 100px;
+	margin-bottom: 10px;
+}
+select, button {
+	margin-bottom: 10px;
+}
+#output {
+	border: 1px solid #ccc;
+	padding: 10px;
+	white-space: pre-wrap;
 }
