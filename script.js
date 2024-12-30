@@ -5,55 +5,36 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Determine the values based on the week number
     var values = ["K.D.", "M.M.", "A.W."];
-    var valuesForShift = ["A.W.", "M.M.","K,D."];
-	var valuesForHeroku = ["M.M","K.D","A.W"];
-	//for services
-	var valuesToCreateServices = ["K.D","A.W"];
-    var index = (weekNumber - 25) % values.length;
-    if (index < 0) {
-        index += values.length;
-    }
-	var indexNext = (weekNumber - 24) % values.length;
-		if (indexNext < 0) {
-		indexNext += values.length;
-	}
-	//shorter one for services
-	var indexServ = (weekNumber - 25) % valuesToCreateServices.length;
-		if(indexServ < 0){
-			indexServ += valuesToCreateServices.length;
-		}
-	//longer for HerokuValue
-	var indexHeroku = (weekNumber - 25) % valuesForHeroku.length;
-		if(indexHeroku < 0){
-			indexHeroku += valuesForHeroku.length;
-		}
-	var indexHerokuNext = (weekNumber - 24) % valuesForHeroku.length;
-		if (indexHerokuNext < 0) {
-		indexHerokuNext += valuesForHeroku.length;
-		}
+    var valuesForShift = ["A.W.", "M.M.","K.D."];
+    var valuesForHeroku = ["M.M","K.D","A.W"];
+    var valuesToCreateServices = ["K.D","A.W"];
+    
+    var index = Math.abs((weekNumber - 26) % values.length); // Adjusted to make currentValue "M.M."
+    var indexNext = (index + 1) % values.length; // Next index
+
     var currentValue = values[index];
-	var currentValueNext = values[indexNext];
+    var currentValueNext = values[indexNext];
     var shiftValue = valuesForShift[index];
-	var shiftValueNext = valuesForShift[indexNext];
-	var ServValue = valuesToCreateServices[indexServ];
-	var HerokuValue = valuesForHeroku[indexHeroku];
-	var HerokuValueNext = valuesForHeroku[indexHerokuNext];
+    var shiftValueNext = valuesForShift[indexNext];
+    var ServValue = valuesToCreateServices[index % valuesToCreateServices.length];
+    var HerokuValue = valuesForHeroku[index];
+    var HerokuValueNext = valuesForHeroku[indexNext];
 
     // Update the displayed values
     var currentValueElement = document.getElementById("currentValue");
-	var currentValueNextElement = document.getElementById("currentValueNext");
+    var currentValueNextElement = document.getElementById("currentValueNext");
     var shiftValueElement = document.getElementById("shiftValue");
-	var shiftValueElementNext = document.getElementById("shiftValueNext");
-	var servValueElement = document.getElementById("ServValue");
-	var HerokuValueElement = document.getElementById("HerokuValue");
-	var HerokuValueNextElement = document.getElementById("HerokuValueNext");
+    var shiftValueElementNext = document.getElementById("shiftValueNext");
+    var servValueElement = document.getElementById("ServValue");
+    var HerokuValueElement = document.getElementById("HerokuValue");
+    var HerokuValueNextElement = document.getElementById("HerokuValueNext");
     currentValueElement.textContent = currentValue;
-	currentValueNextElement.textContent = currentValueNext;
+    currentValueNextElement.textContent = currentValueNext;
     shiftValueElement.textContent = shiftValue;
-	shiftValueElementNext.textContent = shiftValueNext;
-	servValueElement.textContent = ServValue;
-	HerokuValueElement.textContent = HerokuValue;
-	HerokuValueNextElement.textContent = HerokuValueNext;
+    shiftValueElementNext.textContent = shiftValueNext;
+    servValueElement.textContent = ServValue;
+    HerokuValueElement.textContent = HerokuValue;
+    HerokuValueNextElement.textContent = HerokuValueNext;
 });
 
 // Function to calculate the ISO week number
