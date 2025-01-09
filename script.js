@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
     // Determine the values based on the week number
     var values = ["K.D.", "M.M.", "A.W."];
-    var valuesForShift = ["A.W.", "M.M.","K.D."];
+    var valuesForShift = ["A.W.","K.D.","M.M."];
     var valuesForHeroku = ["M.M","K.D","A.W"];
     var valuesToCreateServices = ["K.D","A.W"];
     
