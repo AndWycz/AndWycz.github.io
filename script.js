@@ -1,16 +1,23 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-    // Get the current week number
+document.addEventListener("DOMContentLoaded", function () {
     var today = new Date();
     var weekNumber = getWeekNumber(today);
 
-    // Determine the values based on the week number
-    var values = ["K.D.", "M.M.", "A.W."];
-    var valuesForShift = ["A.W.","K.D.","M.M."];
-    var valuesForHeroku = ["M.M","K.D","A.W"];
-    var valuesToCreateServices = ["K.D","A.W"];
-    
-    var index = Math.abs((weekNumber - 26) % values.length); // Adjusted to make currentValue "M.M."
-    var indexNext = (index + 1) % values.length; // Next index
+    console.log("Week number:", weekNumber); 
+
+    var values = ["M.M.", "A.W.","K.D."];
+    var valuesForShift = ["K.D.", "M.M.", "A.W."];
+    var valuesForHeroku = ["M.M.", "K.D.", "A.W."];
+    var valuesToCreateServices = ["K.D.", "A.W."];
+
+    if (!values.length) {
+        console.error("Values array is empty or undefined.");
+        return;
+    }
+
+    var index = (weekNumber + values.length) % values.length; 
+    var indexNext = (index + 1) % values.length;
+
+    console.log("Index:", index, "IndexNext:", indexNext); 
 
     var currentValue = values[index];
     var currentValueNext = values[indexNext];
@@ -20,24 +27,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
     var HerokuValue = valuesForHeroku[index];
     var HerokuValueNext = valuesForHeroku[indexNext];
 
-    // Update the displayed values
     var currentValueElement = document.getElementById("currentValue");
+    if (currentValueElement) currentValueElement.textContent = currentValue;
+
     var currentValueNextElement = document.getElementById("currentValueNext");
+    if (currentValueNextElement) currentValueNextElement.textContent = currentValueNext;
+
     var shiftValueElement = document.getElementById("shiftValue");
-    var shiftValueElementNext = document.getElementById("shiftValueNext");
+    if (shiftValueElement) shiftValueElement.textContent = shiftValue;
+
+    var shiftValueNextElement = document.getElementById("shiftValueNext");
+    if (shiftValueNextElement) shiftValueNextElement.textContent = shiftValueNext;
+
     var servValueElement = document.getElementById("ServValue");
-    var HerokuValueElement = document.getElementById("HerokuValue");
-    var HerokuValueNextElement = document.getElementById("HerokuValueNext");
-    currentValueElement.textContent = currentValue;
-    currentValueNextElement.textContent = currentValueNext;
-    shiftValueElement.textContent = shiftValue;
-    shiftValueElementNext.textContent = shiftValueNext;
-    servValueElement.textContent = ServValue;
-    HerokuValueElement.textContent = HerokuValue;
-    HerokuValueNextElement.textContent = HerokuValueNext;
+    if (servValueElement) servValueElement.textContent = ServValue;
+
+    var herokuValueElement = document.getElementById("HerokuValue");
+    if (herokuValueElement) herokuValueElement.textContent = HerokuValue;
+
+    var herokuValueNextElement = document.getElementById("HerokuValueNext");
+    if (herokuValueNextElement) herokuValueNextElement.textContent = HerokuValueNext;
 });
 
-// Function to calculate the ISO week number
 function getWeekNumber(date) {
     var target = new Date(date.valueOf());
     var dayNumber = (date.getUTCDay() + 6) % 7;
